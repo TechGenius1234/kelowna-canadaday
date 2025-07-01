@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Kelowna Fireworks Live Cams 🎆</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .cam {
+    position: relative;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red;
+    color: red;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Fixed back button at bottom center */
+  .btn-back {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d70000;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 10000;
+    box-shadow: 0 0 10px rgba(215,0,0,0.8);
+    transition: background-color 0.3s ease;
+  }
+  .btn-back:hover {
+    background-color: #a00000;
+  }
+</style>
+</head>
+<body>
+
+<div class="cam" id="cam1">
+  <video id="video1" controls muted autoplay></video>
+</div>
+<div class="cam" id="cam2">
+  <video id="video2" controls muted autoplay></video>
+</div>
+<div class="cam" id="cam3">Unavailable</div>
+<div class="cam" id="cam4">Unavailable</div>
+
+<a href="index.html" class="btn-back">🏠 Back to Home</a>
+
+<script>
+  const streams = {
+    video1: 'https://wmse-us-ea1.wetmet.net/live/165-04-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6Mjc6MDYgUE0maGFzaF92YWx1ZT0yNVNmL21JN1dzaVFyWVhld1g5MmFnPT0mdmFsaWRtaW51dGVzPTMw',
+    video2: 'https://wmse-us-ea1.wetmet.net/live/165-02-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6NDM6MjkgUE0maGFzaF92YWx1ZT1XOGhBbjVSczJZSFZUblpOWFNMdnlRPT0mdmFsaWRtaW51dGVzPTMw'
+  };
+
+  function loadHLS(videoId, streamUrl) {
+    const video = document.getElementById(videoId);
+    if (!streamUrl) {
+      // Hide video container if no stream
+      const container = video.parentElement;
+      container.innerHTML = 'Unavailable';
+      container.style.display = 'flex';
+      container.style.color = 'red';
+      container.style.fontSize = '24px';
+      container.style.justifyContent = 'center';
+      container.style.alignItems = 'center';
+      return;
+    }
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(streamUrl);
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = streamUrl;
+    }
+  }
+
+  for (const [videoId, url] of Object.entries(streams)) {
+    loadHLS(videoId, url);
+  }
+</script>
+
+</body>
+</html>
