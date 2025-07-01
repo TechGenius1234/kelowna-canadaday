@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Canada Day 2025</title>
+<style>
+  /* Popup overlay */
+  #popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  /* Popup box */
+  #popup-box {
+    background: white;
+    border-radius: 12px;
+    padding: 25px 30px;
+    max-width: 400px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  /* Close button */
+  #popup-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<!-- Your page content here -->
+
+<!-- Popup HTML -->
+<div id="popup-overlay">
+  <div id="popup-box">
+    <div id="popup-close">&times;</div>
+    <div id="popup-message"></div>
+  </div>
+</div>
+
+<script>
+  const popupOverlay = document.getElementById('popup-overlay');
+  const popupMessage = document.getElementById('popup-message');
+  const popupClose = document.getElementById('popup-close');
+
+  // Fireworks start time (10 PM local time today)
+  function getFireworksTime() {
+    const now = new Date();
+    const fwTime = new Date();
+    fwTime.setHours(22, 0, 0, 0);
+    return fwTime;
+  }
+
+  // Show popup with message
+  function showPopup(message) {
+    popupMessage.innerHTML = message;
+    popupOverlay.style.display = 'flex';
+  }
+
+  // Close popup handler
+  popupClose.onclick = () => {
+    popupOverlay.style.display = 'none';
+  };
+
+  // Check the time and show appropriate popup
+  function checkPopup() {
+    const now = new Date();
+    const fwTime = getFireworksTime();
+    const diffMs = fwTime - now;
+    const tenMinutes = 10 * 60 * 1000;
+
+    if (diffMs <= tenMinutes && diffMs > 0) {
+      // Fireworks happening soon popup (within 10 min before 10 PM)
+      showPopup(`
+        <h2>🎆 Fireworks are happening soon!</h2>
+        <p>Please switch to the <a href="cams-fireworks.html" style="color: red; text-decoration: underline;">Fireworks Cams</a> to watch live.</p>
+      `);
+    } else if (diffMs <= 0 && diffMs > -60 * 60 * 1000) {
+      // Fireworks are live popup (from 10 PM to 11 PM)
+      showPopup(`
+        <h2>🎆 Fireworks are live now!</h2>
+        <p>Watch them on the <a href="cams-fireworks.html" style="color: red; text-decoration: underline;">Fireworks Cams</a>.</p>
+      `);
+    } else {
+      // Not fireworks time - show unofficial disclaimer popup
+      showPopup(`
+        <h3>⚠️ Disclaimer</h3>
+        <p>This is an <strong>unofficial</strong> website created by a fan to share Canada Day 2025 event info and live cams.</p>
+      `);
+    }
+  }
+
+  // Run on page load
+  window.onload = () => {
+    checkPopup();
+  };
+</script>
+
+</body>
+</html>
