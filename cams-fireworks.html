@@ -2,36 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Kelowna Fireworks Live Cams 🎆</title>
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<title>Kelowna Event Cams - 4 Cam Grid</title>
 <style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    overflow: hidden;
+    background: black;
+  }
   body {
-    margin: 0;
-    background: #000;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 4px;
     height: 100vh;
-    overflow: hidden;
+    width: 100vw;
   }
-  .cam {
-    position: relative;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid red;
-    color: red;
-    font-family: Arial, sans-serif;
-    font-size: 24px;
-  }
-  video {
+  iframe, .unavailable {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    border: none;
+    display: block;
+    overflow: hidden;
   }
-  /* Fixed back button at bottom center */
+  .unavailable {
+    background: #111;
+    color: red;
+    font-family: Arial, sans-serif;
+    font-size: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .btn-back {
     position: fixed;
     bottom: 20px;
@@ -42,13 +42,12 @@
     padding: 12px 30px;
     font-size: 18px;
     font-weight: bold;
-    border: none;
     border-radius: 10px;
+    border: none;
     cursor: pointer;
-    text-decoration: none;
-    z-index: 10000;
     box-shadow: 0 0 10px rgba(215,0,0,0.8);
-    transition: background-color 0.3s ease;
+    z-index: 10000;
+    text-decoration: none;
   }
   .btn-back:hover {
     background-color: #a00000;
@@ -57,51 +56,23 @@
 </head>
 <body>
 
-<div class="cam" id="cam1">
-  <video id="video1" muted autoplay></video>
-</div>
-<div class="cam" id="cam2">
-  <video id="video2" muted autoplay></video>
-</div>
-<div class="cam" id="cam3">
-  <video id="video3" muted autoplay></video>
-</div>
-<div class="cam" id="cam4">Fireworks begin at: 10:00pm or 2200</div>
+<iframe id="cam1" src="https://api.wetmet.net/widgets/stream/frame.php?uid=780206ceb4e617dd8d9ae127016449ad&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
+
+<iframe id="cam2" src="https://api.wetmet.net/widgets/stream/frame.php?uid=afea76ff593e6c299a137a6bbac1d64c&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
+
+<div class="unavailable">Unavailable</div>
+
+<iframe id="cam4" src="https://api.wetmet.net/widgets/stream/frame.php?uid=10a5f30af3f5bcdff6ba58b6efd078b9&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
 
 <a href="index.html" class="btn-back">🏠 Back to Home</a>
 
 <script>
-  const streams = {
-    video1: 'https://wmse-us-ea1.wetmet.net/live/165-04-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6Mjc6MDYgUE0maGFzaF92YWx1ZT0yNVNmL21JN1dzaVFyWVhld1g5MmFnPT0mdmFsaWRtaW51dGVzPTMw',
-    video2: 'https://wmse-us-ea1.wetmet.net/live/165-02-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6NDM6MjkgUE0maGFzaF92YWx1ZT1XOGhBbjVSczJZSFZUblpOWFNMdnlRPT0mdmFsaWRtaW51dGVzPTMw',
-    video3: 'https://wmse-us-ea1.wetmet.net/live/165-10-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6NTk6MjQgUE0maGFzaF92YWx1ZT1YUUlZK3hHc3p5ZTBmNHUwTDI2bS9nPT0mdmFsaWRtaW51dGVzPTMw'
-  };
-
-  function loadHLS(videoId, streamUrl) {
-    const video = document.getElementById(videoId);
-    if (!streamUrl) {
-      // Hide video container if no stream
-      const container = video.parentElement;
-      container.innerHTML = 'Unavailable';
-      container.style.display = 'flex';
-      container.style.color = 'red';
-      container.style.fontSize = '24px';
-      container.style.justifyContent = 'center';
-      container.style.alignItems = 'center';
-      return;
-    }
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(streamUrl);
-      hls.attachMedia(video);
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = streamUrl;
-    }
-  }
-
-  for (const [videoId, url] of Object.entries(streams)) {
-    loadHLS(videoId, url);
-  }
+  ['cam1','cam2','cam4'].forEach(id => {
+    const iframe = document.getElementById(id);
+    setInterval(() => {
+      iframe.src = iframe.src;
+    }, 300000); // reload every 5 minutes
+  });
 </script>
 
 </body>
