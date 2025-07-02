@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Kelowna Event Cams - 4 Cam Grid</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    overflow: hidden;
+    background: black;
+  }
+  body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100vh;
+    width: 100vw;
+  }
+  iframe, .unavailable {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    overflow: hidden;
+  }
+  .unavailable {
+    background: #111;
+    color: red;
+    font-family: Arial, sans-serif;
+    font-size: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-back {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d70000;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(215,0,0,0.8);
+    z-index: 10000;
+    text-decoration: none;
+  }
+  .btn-back:hover {
+    background-color: #a00000;
+  }
+</style>
+</head>
+<body>
+
+<iframe id="cam1" src="https://api.wetmet.net/widgets/stream/frame.php?uid=780206ceb4e617dd8d9ae127016449ad&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
+
+<iframe id="cam2" src="https://api.wetmet.net/widgets/stream/frame.php?uid=afea76ff593e6c299a137a6bbac1d64c&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
+
+<div class="unavailable">Unavailable</div>
+
+<iframe id="cam4" src="https://api.wetmet.net/widgets/stream/frame.php?uid=10a5f30af3f5bcdff6ba58b6efd078b9&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
+
+<a href="index.html" class="btn-back">🏠 Back to Home</a>
+
+<script>
+  ['cam1','cam2','cam4'].forEach(id => {
+    const iframe = document.getElementById(id);
+    setInterval(() => {
+      iframe.src = iframe.src;
+    }, 300000); // reload every 5 minutes
+  });
+</script>
+
+</body>
+</html>
