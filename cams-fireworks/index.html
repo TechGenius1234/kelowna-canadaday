@@ -1,58 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Kelowna Event Cams - 4 Cam Grid</title>
-<style>
-  html, body {
-    margin: 0; padding: 0; height: 100%;
-    overflow: hidden;
-    background: black;
-  }
-  body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 100vh;
-    width: 100vw;
-  }
-  iframe, .unavailable {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    overflow: hidden;
-  }
-  .unavailable {
-    background: #111;
-    color: red;
-    font-family: Arial, sans-serif;
-    font-size: 3vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .btn-back {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #d70000;
-    color: white;
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(215,0,0,0.8);
-    z-index: 10000;
-    text-decoration: none;
-  }
-  .btn-back:hover {
-    background-color: #a00000;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <title>Kelowna Firework Cams - 4 Cam Grid</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+    body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100vh;
+      width: 100vw;
+    }
+    iframe, .unavailable {
+      width: 100%;
+      height: 100%;
+      border: none;
+      overflow: hidden;
+    }
+    .unavailable {
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 1.5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+    .unavailable h5 {
+      margin: 0;
+      font-size: 1.8vw;
+      color: #ff5050;
+    }
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+    .cam-button {
+      background: #00ccff;
+      color: black;
+      font-size: 1.3vw;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 0 10px rgba(0, 204, 255, 0.6);
+      transition: all 0.2s ease;
+    }
+    .cam-button:hover {
+      background: #0099cc;
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 153, 204, 0.8);
+    }
+    .btn-back {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #d70000;
+      color: white;
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(215,0,0,0.8);
+      z-index: 10000;
+      text-decoration: none;
+    }
+    .btn-back:hover {
+      background-color: #a00000;
+    }
+  </style>
 </head>
 <body>
 
@@ -60,14 +93,21 @@
 
 <iframe id="cam2" src="https://api.wetmet.net/widgets/stream/frame.php?uid=afea76ff593e6c299a137a6bbac1d64c&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
 
-<div class="unavailable">Unavailable</div>
+<div class="unavailable">
+  <h5>🎆 Click a button to view a camera fullscreen:</h5>
+  <div class="button-group">
+    <a href="cam1.html" class="cam-button" target="_blank">Firework Cam 1</a>
+    <a href="cam2.html" class="cam-button" target="_blank">Firework Cam 2</a>
+    <a href="cam3.html" class="cam-button" target="_blank">Firework Cam 3</a>
+  </div>
+</div>
 
-<iframe id="cam4" src="https://api.wetmet.net/widgets/stream/frame.php?uid=10a5f30af3f5bcdff6ba58b6efd078b9&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
+<iframe id="cam3" src="https://api.wetmet.net/widgets/stream/frame.php?uid=10a5f30af3f5bcdff6ba58b6efd078b9&width=900px&height=440px" allowfullscreen loading="lazy"></iframe>
 
-<a href="index.html" class="btn-back">🏠 Back to Home</a>
+<a href="/kelowna-canadaday/index.html" class="btn-back">🏠 Back to Firework Center</a>
 
 <script>
-  ['cam1','cam2','cam4'].forEach(id => {
+  ['cam1','cam2','cam3'].forEach(id => {
     const iframe = document.getElementById(id);
     setInterval(() => {
       iframe.src = iframe.src;
