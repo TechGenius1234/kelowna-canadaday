@@ -58,12 +58,14 @@
 <body>
 
 <div class="cam" id="cam1">
-  <video id="video1" controls muted autoplay></video>
+  <video id="video1" muted autoplay></video>
 </div>
 <div class="cam" id="cam2">
-  <video id="video2" controls muted autoplay></video>
+  <video id="video2" muted autoplay></video>
 </div>
-<div class="cam" id="cam3">Kelowna Canada Day</div>
+<div class="cam" id="cam3">
+  <video id="video3" muted autoplay></video>
+</div>
 <div class="cam" id="cam4">Fireworks begin at: 10:00pm or 2200</div>
 
 <a href="index.html" class="btn-back">🏠 Back to Home</a>
@@ -71,7 +73,8 @@
 <script>
   const streams = {
     video1: 'https://wmse-us-ea1.wetmet.net/live/165-04-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6Mjc6MDYgUE0maGFzaF92YWx1ZT0yNVNmL21JN1dzaVFyWVhld1g5MmFnPT0mdmFsaWRtaW51dGVzPTMw',
-    video2: 'https://wmse-us-ea1.wetmet.net/live/165-02-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6NDM6MjkgUE0maGFzaF92YWx1ZT1XOGhBbjVSczJZSFZUblpOWFNMdnlRPT0mdmFsaWRtaW51dGVzPTMw'
+    video2: 'https://wmse-us-ea1.wetmet.net/live/165-02-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6NDM6MjkgUE0maGFzaF92YWx1ZT1XOGhBbjVSczJZSFZUblpOWFNMdnlRPT0mdmFsaWRtaW51dGVzPTMw',
+    video3: 'https://wmse-us-ea1.wetmet.net/live/165-10-01/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8xLzIwMjUgMTE6NTk6MjQgUE0maGFzaF92YWx1ZT1YUUlZK3hHc3p5ZTBmNHUwTDI2bS9nPT0mdmFsaWRtaW51dGVzPTMw'
   };
 
   function loadHLS(videoId, streamUrl) {
