@@ -112,7 +112,7 @@
 </div>
 
 <div class="buttons">
-  <a href="/cams-fireworks" class="button">🎆 Watch Fireworks Cams</a>
+  <a href="cams-fireworks" class="button">🎆 Watch Fireworks Cams</a>
   <a href="cams-events.html" class="button">🎤 Watch Event Cams</a>
 </div>
 
@@ -154,12 +154,12 @@
     if (diffMs <= tenMinutes && diffMs > 0) {
       showPopup(`
         <h2>🎆 Fireworks are happening soon!</h2>
-        <p>Please switch to the <a href="/cams-fireworks">Fireworks Cams</a> to watch live.</p>
+        <p>Please switch to the <a href="cams-fireworks">Fireworks Cams</a> to watch live.</p>
       `);
     } else if (diffMs <= 0 && diffMs > -60 * 60 * 1000) {
       showPopup(`
         <h2>🎆 Fireworks are live now!</h2>
-        <p>Watch them on the <a href="/cams-fireworks">Fireworks Cams</a>.</p>
+        <p>Watch them on the <a href="cams-fireworks">Fireworks Cams</a>.</p>
       `);
     } else {
       showPopup(`
