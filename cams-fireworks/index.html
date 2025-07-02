@@ -16,10 +16,19 @@
       font-family: Arial, sans-serif;
     }
 
-    iframe, .unavailable {
-      width: 100%;
-      height: 100%;
+    .cam-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .cam-wrapper iframe {
+      width: 1080px;
+      height: 800px;
       border: none;
+      object-fit: cover;
+      display: block;
     }
 
     .unavailable {
@@ -74,21 +83,26 @@
 <body>
 
 <!-- Cam 1 -->
-<iframe id="cam1" src="https://api.wetmet.net/widgets/stream/frame.php?uid=780206ceb4e617dd8d9ae127016449ad&width=1080px&height=800px" loading="lazy"></iframe>
+<div class="cam-wrapper">
+  <iframe id="cam1" src="https://api.wetmet.net/widgets/stream/frame.php?uid=780206ceb4e617dd8d9ae127016449ad&width=1080px&height=800px" allowfullscreen loading="lazy"></iframe>
+</div>
 
 <!-- Cam 2 -->
-<iframe id="cam2" src="https://api.wetmet.net/widgets/stream/frame.php?uid=afea76ff593e6c299a137a6bbac1d64c&width=1080px&height=800px" loading="lazy"></iframe>
+<div class="cam-wrapper">
+  <iframe id="cam2" src="https://api.wetmet.net/widgets/stream/frame.php?uid=afea76ff593e6c299a137a6bbac1d64c&width=1080px&height=800px" allowfullscreen loading="lazy"></iframe>
+</div>
 
 <!-- Cam 3 Unavailable -->
 <div class="unavailable">
-  <div>Camera Unavailable</div>
   <a href="/kelowna-canadaday/cams-fireworks/cam1.html" target="_self">🔎 View Cam 1 Fullscreen</a>
   <a href="/kelowna-canadaday/cams-fireworks/cam2.html" target="_self">🔎 View Cam 2 Fullscreen</a>
   <a href="/kelowna-canadaday/cams-fireworks/cam3.html" target="_self">🔎 View Cam 3 Fullscreen</a>
 </div>
 
 <!-- Cam 4 -->
-<iframe id="cam4" src="https://api.wetmet.net/widgets/stream/frame.php?uid=10a5f30af3f5bcdff6ba58b6efd078b9&width=1080px&height=800px" loading="lazy"></iframe>
+<div class="cam-wrapper">
+  <iframe id="cam4" src="https://api.wetmet.net/widgets/stream/frame.php?uid=10a5f30af3f5bcdff6ba58b6efd078b9&width=1080px&height=800px" allowfullscreen loading="lazy"></iframe>
+</div>
 
 <!-- Back Button -->
 <a href="/kelowna-canadaday/" class="btn-back">🏠 Fireworks Center</a>
