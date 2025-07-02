@@ -95,7 +95,7 @@
     <a href="/kelowna-canadaday/cams-fireworks/cam3.html" target="_self">🔎 View Cam 3</a>
   </div>
 
-  <iframe id="cam4" loading="lazy"></iframe>
+  <iframe id=cam4 allowfullscreen="false" frameborder="0" height="440px" src="https://g1.ipcamlive.com/player/player.php?alias=61268c83a557c" width="900px"></iframe>
 
 </div>
 
@@ -107,12 +107,10 @@
   // Base URLs for cams
   var cam1Base = "https://api.wetmet.net/widgets/stream/frame.php?uid=780206ceb4e617dd8d9ae127016449ad";
   var cam2Base = "https://api.wetmet.net/widgets/stream/frame.php?uid=afea76ff593e6c299a137a6bbac1d64c";
-  var cam4Base = "https://api.wetmet.net/widgets/stream/frame.php?uid=10a5f30af3f5bcdff6ba58b6efd078b9";
 
   // Build full URLs with width & height parameters
   document.getElementById("cam1").src = cam1Base + "&width=" + width + "&height=" + height;
   document.getElementById("cam2").src = cam2Base + "&width=" + width + "&height=" + height;
-  document.getElementById("cam4").src = cam4Base + "&width=" + width + "&height=" + height;
 
   // Reload cams every 5 minutes
   ['cam1','cam2','cam4'].forEach(id => {
